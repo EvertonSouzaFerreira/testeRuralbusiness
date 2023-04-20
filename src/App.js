@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import { useEffect, useState } from "react";
+
+//componentes
+import RegistroInfo from "./componentes/registro/RegistroInfo";
+import Header from "./componentes/header/Header";
+import MetodoPagamento from "./componentes/metodoPagamento/MetodoPagamento.jsx";
+import Assinatura from "./componentes/assinatura/Assinatura";
+import Cartao from "./componentes/Cartao/Cartao";
+
+const GlobalStyle = createGlobalStyle`
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+
+      {/* <SignUp /> */}
+      {/* <MetodoPagamento /> */}
+      {/* <Assinatura /> */}
+
+      <Router>
+        <Header />
+
+        <Routes>
+          <Route exact path='/' element={<Assinatura />} />
+          <Route path='/metodopagamento' element={<MetodoPagamento />} />
+          <Route path='/pagamento' element={<RegistroInfo />} />
+          <Route path='/cartao' element={<Cartao />}></Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
